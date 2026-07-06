@@ -1,0 +1,8 @@
+{
+  "name": "Помощник Зрения",
+  "description": "Приложение для слабовидящих и слепых, описывающее происходящее вокруг через камеру с помощью нейросети.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
