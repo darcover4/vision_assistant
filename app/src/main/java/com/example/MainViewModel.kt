@@ -140,7 +140,7 @@ class MainViewModel(
             ttsHelper.speak("Делаю фото. Подождите.")
             
             val prompt = getPromptText() + " Это для слепого или слабовидящего человека."
-            val result = askGeminiWithImage(currentKey, prompt, bitmap)
+            val result = askApiWithImage(currentKey, prompt, bitmap)
             val cleanRes = cleanText(result)
             
             _statusText.value = cleanRes
@@ -180,10 +180,10 @@ class MainViewModel(
             _statusText.value = "Анализ видео..."
             
             val prompt = getPromptText() + " Опиши только то, что происходит прямо сейчас. Это для слепого или слабовидящего человека."
-            val result = askGeminiWithImage(currentKey, prompt, bitmap)
+            val result = askApiWithImage(currentKey, prompt, bitmap)
             val cleanRes = cleanText(result)
             
-            if (_isVideoMode.value) { // Check if it was cancelled during processing
+            if (_isVideoMode.value) {
                 _statusText.value = cleanRes
                 _isWaitingForNextFrame.value = true
                 _isSpeaking.value = true

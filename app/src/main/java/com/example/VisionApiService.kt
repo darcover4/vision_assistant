@@ -54,7 +54,7 @@ data class Candidate(
     val content: Content? = null
 )
 
-interface GeminiApiService {
+interface VisionApiService {
     @POST("v1beta/models/gemini-2.5-flash:generateContent")
     suspend fun generateContent(
         @Query("key") apiKey: String,
@@ -71,19 +71,18 @@ object RetrofitClient {
         .writeTimeout(60, TimeUnit.SECONDS)
         .build()
 
-    val service: GeminiApiService by lazy {
+    val service: VisionApiService by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
-            .create(GeminiApiService::class.java)
+            .create(VisionApiService::class.java)
     }
 }
 
 fun Bitmap.toBase64(): String {
     val outputStream = ByteArrayOutputStream()
-    // For smaller payload, we can scale down the image and use JPEG compression
     val scaledBitmap = if (width > 1024 || height > 1024) {
         val ratio = 1024.0f / maxOf(width, height)
         Bitmap.createScaledBitmap(this, (width * ratio).toInt(), (height * ratio).toInt(), true)
@@ -94,7 +93,7 @@ fun Bitmap.toBase64(): String {
     return Base64.encodeToString(outputStream.toByteArray(), Base64.NO_WRAP)
 }
 
-suspend fun askGeminiWithImage(apiKey: String, prompt: String, bitmap: Bitmap): String = withContext(Dispatchers.IO) {
+suspend fun askApiWithImage(apiKey: String, prompt: String, bitmap: Bitmap): String = withContext(Dispatchers.IO) {
     val request = GenerateContentRequest(
         contents = listOf(
             Content(

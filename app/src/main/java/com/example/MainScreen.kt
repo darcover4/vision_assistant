@@ -89,14 +89,12 @@ fun MainScreen(
             }
         }
 
-        // Overlay UI
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // Top 40%
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -134,23 +132,15 @@ fun MainScreen(
                         color = Color(0xFF1B1B1F),
                         letterSpacing = (-0.5).sp
                     )
-                    Text(
-                        text = "И КЛЮЧ GEMINI",
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = Color(0xFF44474E).copy(alpha = 0.8f)
-                    )
                 }
             }
 
-            // Bottom 60%
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(0.6f),
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                // Left - Photo Button
                 Box(
                     modifier = Modifier
                         .weight(1f)
@@ -202,7 +192,6 @@ fun MainScreen(
                     }
                 }
 
-                // Right - Video Button
                 val videoBgColor = if (isVideoMode) Color(0xFFBA1A1A) else Color(0xFF005AC1)
                 val videoContentColor = if (isVideoMode) Color(0xFFFFDAD6) else Color(0xFFD7E2FF)
                 val videoIconBgColor = if (isVideoMode) Color(0xFFFFDAD6) else Color(0xFFD7E2FF)
@@ -254,13 +243,12 @@ fun MainScreen(
             }
         }
 
-        // Floating Status Text Overlay
         if (isProcessing || isSpeaking) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
                     .background(Color(0xFF1B1B1F).copy(alpha = 0.95f))
-                    .clickable(enabled = false) {} // block touches
+                    .clickable(enabled = false) {}
             ) {
                 if (isSpeaking && !isProcessing) {
                     Column(modifier = Modifier.fillMaxSize()) {

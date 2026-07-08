@@ -35,7 +35,6 @@ fun CameraPreviewView(
     val lifecycleOwner = LocalLifecycleOwner.current
     val cameraProviderFuture = remember { ProcessCameraProvider.getInstance(context) }
     
-    // Executor for image analysis
     val analysisExecutor = remember { Executors.newSingleThreadExecutor() }
 
     DisposableEffect(Unit) {
@@ -78,7 +77,6 @@ fun CameraPreviewView(
                 imageAnalysis.setAnalyzer(analysisExecutor) { imageProxy ->
                     if (isVideoMode) {
                         val currentTimestamp = System.currentTimeMillis()
-                        // Pass frames frequently (every 1 sec), ViewModel will drop them if busy or waiting
                         if (currentTimestamp - lastAnalyzedTimestamp >= 1000) {
                             val bitmap = imageProxy.toBitmap()
                             onVideoFrameCaptured(bitmap)

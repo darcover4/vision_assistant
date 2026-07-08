@@ -78,7 +78,7 @@ fun SettingsScreen(
                 .padding(16.dp)
         ) {
             Text(
-                text = "Настройка нейросети",
+                text = "Настройки API",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onBackground
@@ -87,7 +87,7 @@ fun SettingsScreen(
             Spacer(modifier = Modifier.height(16.dp))
             
             Text(
-                text = "Для работы приложения требуется API-ключ Gemini.",
+                text = "Для работы приложения требуется API-ключ.",
                 fontSize = 16.sp,
                 color = MaterialTheme.colorScheme.onBackground
             )
@@ -95,7 +95,7 @@ fun SettingsScreen(
             Spacer(modifier = Modifier.height(8.dp))
             
             Text(
-                text = "Как получить ключ:\n1. Зайдите на сайт Google AI Studio (aistudio.google.com).\n2. Нажмите 'Get API key'.\n3. Создайте новый ключ и скопируйте его сюда.\n\nВнимание: Если у вас не получается зайти на сайт Google AI Studio, или нейросеть недоступна в вашем регионе, вам необходимо использовать VPN.",
+                text = "Как получить ключ:\n1. Зайдите на сайт получения ключа (aistudio.google.com).\n2. Нажмите 'Get API key'.\n3. Создайте новый ключ и скопируйте его сюда.\n\nВнимание: Если сайт недоступен в вашем регионе, вам необходимо использовать VPN.",
                 fontSize = 14.sp,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -105,7 +105,7 @@ fun SettingsScreen(
             OutlinedTextField(
                 value = apiKeyInput,
                 onValueChange = { apiKeyInput = it },
-                label = { Text("Gemini API Ключ") },
+                label = { Text("API Ключ") },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true
             )
